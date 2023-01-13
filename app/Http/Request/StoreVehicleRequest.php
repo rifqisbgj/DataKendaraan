@@ -26,13 +26,13 @@ class StoreVehicleRequest extends FormRequest
     public function rules()
     {
         $rules = [
-            'tahun' => ['required','numeric','digits:4','min:1900','max:'.date('Y')+1],
+            'tahun' => ['nullable','numeric','digits:4','min:1900','max:'.date('Y')+1],
             'nama_pemilik' => ['required','string','max:255'],
-            'silinder' => ['required','numeric'],
-            'bahan_bakar' => ['required','string'],
-            'merk' => ['required','string'],
-            'warna' => ['required','string'],
-            'alamat' => ['required','string'],
+            'silinder' => ['nullable','numeric'],
+            'bahan_bakar' => ['nullable','string'],
+            'merk' => ['nullable','string'],
+            'warna' => ['nullable','string'],
+            'alamat' => ['nullable','string'],
         ];
 
         if ($this->getMethod() == "POST") {

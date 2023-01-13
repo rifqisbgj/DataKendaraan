@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->string('no_reg')->primary()->unique();
             $table->string('nama_pemilik', 155);
-            $table->string('alamat');
-            $table->string('merk');
-            $table->year('tahun');
-            $table->integer('silinder');
-            $table->enum('warna',['Merah','Hitam','Biru','Abu-Abu']);
-            $table->string('bahan_bakar');
+            $table->string('alamat')->nullable();
+            $table->string('merk')->nullable();
+            $table->year('tahun')->nullable();
+            $table->integer('silinder')->nullable();
+            $table->enum('warna',['Merah','Hitam','Biru','Abu-Abu'])->nullable();
+            $table->string('bahan_bakar')->nullable();
             $table->timestamps();
         });
     }

@@ -8,7 +8,7 @@
         </div>
         <div class="col-md-6">
             <h6>Tahun Pembuatan</h6>
-            <p>{{ $vehicle->tahun }}</p>
+            <p>{{ $vehicle->tahun ?: 'Belum diatur' }}</p>
         </div>
         <hr>
         <div class="col-md-6">
@@ -17,25 +17,25 @@
         </div>
         <div class="col-md-6">
             <h6>Kapasitas Silinder</h6>
-            <p>{{ $vehicle->silinder }} cc</p>
+            <p>{{ $vehicle->silinder ? $vehicle->silinder . ' cc' : 'Belum diatur' }}</p>
         </div>
         <hr>
         <div class="col-md-6">
             <h6>Merk Kendaraan</h6>
-            <p>{{ $vehicle->merk }}</p>
+            <p>{{ $vehicle->merk ?: 'Belum diatur' }}</p>
         </div>
         <div class="col-md-6">
             <h6>Warna Kendaraan</h6>
-            <p>{{ $vehicle->warna }}</p>
+            <p>{{ $vehicle->warna ?: 'Belum diatur' }}</p>
         </div>
         <hr>
         <div class="col-md-6">
             <h6>Alamat Pemilik Kendaraan</h6>
-            <p>{{ $vehicle->alamat }}</p>
+            <p>{{ $vehicle->alamat ?: 'Belum diatur' }}</p>
         </div>
         <div class="col-md-6">
             <h6>Bahan Bakar</h6>
-            <p>{{ $vehicle->bahan_bakar }}</p>
+            <p>{{ $vehicle->bahan_bakar ?: 'Belum diatur' }}</p>
         </div>
         <hr>
     </div>

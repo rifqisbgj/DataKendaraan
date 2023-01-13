@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form class="">
+    <form class="{{ route('kendaraan') }}" method="GET">
         <div class="card mt-3">
             <h5 class="card-header">Aplikasi Data Kendaraan</h5>
             <div class="card-body">
@@ -37,13 +37,13 @@
             @forelse ($veh as $v)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $v->no_reg }}</td>
+                    <td class="text-center">{{ $v->no_reg }}</td>
                     <td>{{ $v->nama_pemilik }}</td>
-                    <td>{{ $v->merk }}</td>
-                    <td>{{ $v->tahun }}</td>
-                    <td>{{ $v->silinder }} cc</td>
-                    <td>{{ $v->warna }}</td>
-                    <td>{{ $v->bahan_bakar }}</td>
+                    <td class="text-center">{{ $v->merk ?: '-' }}</td>
+                    <td class="text-center">{{ $v->tahun ?: '-' }}</td>
+                    <td>{{ $v->silinder ? $v->silinder . ' cc' : '-' }}</td>
+                    <td>{{ $v->warna ?: '-' }}</td>
+                    <td class="text-center">{{ $v->bahan_bakar ?: '-' }}</td>
                     <td>
                         <a href="{{ route('kendaraan.view', $v->no_reg) }}" class="btn btn-primary btn-sm">Detail</a>
                         <a href="{{ route('kendaraan.edit', $v->no_reg) }}" class="btn btn-warning btn-sm">Edit</a>
@@ -67,7 +67,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="deleteModalLabel">Menghapus Data Kendaraan</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <form action="{{ route('kendaraan.delete') }}" method="POST">

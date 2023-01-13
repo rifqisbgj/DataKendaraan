@@ -13,9 +13,14 @@ class VehicleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $req)
     {
-        $veh = Vehicle::all();
+        $veh = Vehicle::where('no_reg','LIKE','%'.$req->noreg.'%')
+            ->where('nama_pemilik','LIKE','%'.$req->nama_pemilik.'%')
+            ->orderBy('created_at')
+            ->get();
+
+        // return $veh;
         return view('vehicle.index', compact('veh'));
     }
 
