@@ -8,7 +8,7 @@
             <div class="col-md-6">
                 No. Registrasi Kendaraan
                 <input type="text" class="form-control {{ $errors->has('no_reg') ? 'is-invalid' : '' }}" name="no_reg"
-                    value="{{ old('no_reg') ?: $veh->no_reg }}">
+                    value="{{ $veh->no_reg }}">
                 @if ($errors->has('no_reg'))
                     <p class="text-danger">{{ $errors->first('no_reg') }}</p>
                 @endif
@@ -77,7 +77,7 @@
             </div>
         </div>
 
-        <input type="submit" class="btn btn-primary" value="Simpan">
+        <input type="submit" class="btn btn-primary" value="Ubah">
         <a href="{{ route('kendaraan') }}" class="btn btn-secondary">Kembali</a>
     </form>
 @endsection

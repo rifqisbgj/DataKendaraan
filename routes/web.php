@@ -18,11 +18,14 @@ Route::get('/', function ()
 {
     return redirect('kendaraan');
 });
+
 Route::prefix('kendaraan')->group(function()
 {
     Route::get('/',[VehicleController::class,'index'])->name('kendaraan');
     Route::get('/tambah',[VehicleController::class,'create'])->name('kendaraan.tambah');
     Route::post('/store',[VehicleController::class,'store'])->name('kendaraan.store');
+    Route::get('/view/{vehicle}',[VehicleController::class,'show'])->name('kendaraan.view');
     Route::get('/edit/{vehicle}',[VehicleController::class,'edit'])->name('kendaraan.edit');
     Route::put('/update/{vehicle}',[VehicleController::class,'update'])->name('kendaraan.update');
+    Route::delete('/delete',[VehicleController::class,'destroy'])->name('kendaraan.delete');
 });

@@ -49,10 +49,10 @@ class VehicleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Vehicle $vehicle)
     {
-        $veh = Vehicle::find($id);
-        return view('vehicle.view', compact('veh'));
+        // return $vehicle;
+        return view('vehicle.view', compact('vehicle'));
     }
 
     /**
@@ -89,8 +89,10 @@ class VehicleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $req)
     {
-        //
+        Vehicle::destroy($req->noreg);
+        $req->session()->flash('success',"Data dengan kode kendaraan {$req->noreg} berhasil dihapus");
+        return redirect(route('kendaraan'));
     }
 }

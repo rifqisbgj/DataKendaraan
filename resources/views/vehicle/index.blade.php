@@ -45,9 +45,12 @@
                     <td>{{ $v->warna }}</td>
                     <td>{{ $v->bahan_bakar }}</td>
                     <td>
-                        <a href="" class="btn btn-primary btn-sm">Detail</a>
+                        <a href="{{ route('kendaraan.view', $v->no_reg) }}" class="btn btn-primary btn-sm">Detail</a>
                         <a href="{{ route('kendaraan.edit', $v->no_reg) }}" class="btn btn-warning btn-sm">Edit</a>
-                        <a href="/" class="btn btn-danger btn-sm">Delete</a>
+                        <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                            data-bs-target="#deleteData" data-noreg="{{ $v->no_reg }}">
+                            Delete
+                        </button>
                     </td>
                 </tr>
             @empty
@@ -57,4 +60,42 @@
             @endforelse
         </table>
     </div>
+@endsection
+
+@section('modal')
+    <div class="modal fade" id="deleteData" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('kendaraan.delete') }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-body">
+                        Anda yakin menghapus data <span id="noreg"></span> ?
+                        <input type="hidden" name="noreg" id="noregup">
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="Ok">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+@endsection
+@section('js')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $('#deleteData').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var noreg = button.data('noreg');
+
+            var modal = $(this);
+            modal.find('.modal-body #noreg').text(noreg);
+            modal.find('.modal-body #noregup').val(noreg);
+        });
+    </script>
 @endsection
