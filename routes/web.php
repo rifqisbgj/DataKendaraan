@@ -23,6 +23,6 @@ Route::prefix('kendaraan')->group(function()
     Route::get('/',[VehicleController::class,'index'])->name('kendaraan');
     Route::get('/tambah',[VehicleController::class,'create'])->name('kendaraan.tambah');
     Route::post('/store',[VehicleController::class,'store'])->name('kendaraan.store');
-    Route::get('/edit/{veh}',[VehicleController::class,'edit'])->name('kendaraan.edit');
-    Route::put('/update/{veh}',[VehicleController::class,'update'])->name('kendaraan.update');
+    Route::get('/edit/{vehicle}',[VehicleController::class,'edit'])->name('kendaraan.edit');
+    Route::put('/update/{vehicle}',[VehicleController::class,'update'])->name('kendaraan.update');
 });

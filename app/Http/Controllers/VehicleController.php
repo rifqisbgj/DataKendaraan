@@ -74,9 +74,10 @@ class VehicleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreVehicleRequest $request, $id)
+    public function update(StoreVehicleRequest $request, Vehicle $vehicle)
     {
-        $up = Vehicle::find($id)->update($request->all());
+        $vehicle->fill($request->validated());
+        $vehicle->save();
         $request->session()->flash('success',"Data dengan kode kendaraan {$request->no_reg} berhasil diperbarui");
 
         return redirect(route('kendaraan'));

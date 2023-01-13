@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('vehicles', function (Blueprint $table) {
-            $table->string('no_reg', 10)->primary();
+            $table->string('no_reg')->primary()->unique();
             $table->string('nama_pemilik', 155);
             $table->string('alamat');
             $table->string('merk');
